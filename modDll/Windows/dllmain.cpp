@@ -10,17 +10,17 @@
 
 const wchar_t EVENT_NAME[] = L"witcherMod-Injector";
 
-//static FILE* logfile = nullptr;
+static FILE* logfile = nullptr;
 
 static void Log(const char* prefix, const char* msg)
 {
-	/*if (logfile)
+	if (logfile)
 	{
 		auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 		auto ltime = std::localtime(&time);
 		fprintf(logfile, "[%02d:%02d:%02d] [%s] %s", ltime->tm_hour, ltime->tm_min, ltime->tm_sec, prefix, msg);
 		fflush(logfile);
-	}*/
+	}
 }
 
 void PrintMessage(const char* format, ...)
@@ -43,7 +43,7 @@ void PrintDevMessage(const char* format, ...)
 	va_start(args, format);
 
 	char temp[1024];
-	vsprintf_s(temp, format, args);
+	vsnprintf(temp, 1024, format, args);
 
 	va_end(args);
 
@@ -57,7 +57,7 @@ void PrintWarning(const char* format, ...)
 	va_start(args, format);
 
 	char temp[1024];
-	vsprintf_s(temp, format, args);
+	vsnprintf(temp,1024, format, args);
 
 	va_end(args);
 
@@ -71,7 +71,7 @@ void PrintDevWarning(const char* format, ...)
 	va_start(args, format);
 
 	char temp[1024];
-	vsprintf_s(temp, format, args);
+	vsnprintf(temp,1024, format, args);
 
 	va_end(args);
 
@@ -85,17 +85,17 @@ unsigned int __stdcall MainThread(void* args)
 	ConUtils::Log("WitcherMod version " WITCHERMOD_VERSION ".\n", FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
 	auto bxtLogfile = getenv("BXT_LOGFILE");
-	/*if (bxtLogfile)
+	if (bxtLogfile)
 	{
 		logfile = fopen(bxtLogfile, "a");
 		if (!logfile)
 			PrintWarning("Could not open the log file (%s): %s.\n", bxtLogfile, strerror(errno));
-	}*/
+	}
 
 	_EngineMsg = PrintMessage;
-	_EngineDevMsg = PrintMessage;
-	_EngineWarning = PrintMessage;
-	_EngineDevWarning = PrintMessage;
+	_EngineDevMsg = PrintDevMessage;
+	_EngineWarning = PrintWarning;
+	_EngineDevWarning = PrintDevWarning;
 
 	Interprocess::Initialize();
 
@@ -107,7 +107,7 @@ unsigned int __stdcall MainThread(void* args)
 	if (resume_event != NULL) {
 		SetEvent(resume_event);
 		CloseHandle(resume_event);
-		//EngineDevMsg("Signaled the injector to resume the process.\n");
+		EngineDevMsg("Signaled the injector to resume the process.\n");
 	}
 
 	return 0;
@@ -121,11 +121,11 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 		break;
 
 	case DLL_PROCESS_DETACH:
-		//Hooks::Free();
+		Hooks::Free();
 		Interprocess::Shutdown();
 		ConUtils::Free();
-		//if (logfile)
-			//fclose(logfile);
+		if (logfile)
+			fclose(logfile);
 
 		break;
 	}

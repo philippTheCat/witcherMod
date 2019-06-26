@@ -19,7 +19,8 @@
 #include <cstring>
 
 #include <array>
-#include <future>
+
+#include "../mingw.future.h"
 #include <limits>
 #include <map>
 #include <mutex>
