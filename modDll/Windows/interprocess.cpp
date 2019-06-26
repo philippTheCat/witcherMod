@@ -3,6 +3,7 @@
 
 #include "../interprocess.hpp"
 #include "../moddll.hpp"
+#include "../SPTLib/sptlib.hpp"
 
 namespace Interprocess
 {
@@ -11,26 +12,7 @@ namespace Interprocess
 	static OVERLAPPED overlapped;
 	static bool writing_to_pipe;
 
-	/*static void InitTASViewPipe()
-	{
-		pipe_tasview = CreateNamedPipe(
-			"\\\\.\\pipe\\" MQ_NAME,
-			PIPE_ACCESS_OUTBOUND,
-			PIPE_TYPE_MESSAGE | PIPE_REJECT_REMOTE_CLIENTS,
-			1,
-			256 * 1000,
-			0,
-			0,
-			NULL);
-		if (pipe_tasview == INVALID_HANDLE_VALUE) {
-			EngineDevWarning("Error opening the TASView pipe: %d\n", GetLastError());
-			EngineWarning("TASView integration is not available.\n");
-			return;
-		}
 
-		EngineDevMsg("Opened the TASView pipe.\n");
-	}
-*/
 	static void InitBunnySplitPipe()
 	{
 		pipe_bunnysplit = CreateNamedPipe(
@@ -43,17 +25,17 @@ namespace Interprocess
 			0,
 			NULL);
 		if (pipe_bunnysplit == INVALID_HANDLE_VALUE) {
-			//EngineDevWarning("Error opening the BunnySplit pipe: %d\n", GetLastError());
-			//EngineWarning("BunnySplit integration is not available.\n");
+			EngineDevWarning("Error opening the BunnySplit pipe: %d\n", GetLastError());
+			EngineWarning("BunnySplit integration is not available.\n");
 			return;
 		}
-		//EngineDevMsg("Opened the BunnySplit pipe.\n");
+		EngineDevMsg("Opened the BunnySplit pipe.\n");
 
 		memset(&overlapped, 0, sizeof(overlapped));
 		overlapped.hEvent = CreateEvent(NULL, TRUE, TRUE, NULL);
 		if (overlapped.hEvent == NULL) {
-			//EngineDevWarning("Error creating an event for overlapped: %d. Closing the BunnySplit pipe.\n", GetLastError());
-			//EngineWarning("BunnySplit integration is not available.\n");
+			EngineDevWarning("Error creating an event for overlapped: %d. Closing the BunnySplit pipe.\n", GetLastError());
+			EngineWarning("BunnySplit integration is not available.\n");
 			CloseHandle(pipe_bunnysplit);
 			pipe_bunnysplit = INVALID_HANDLE_VALUE;
 		}
@@ -61,25 +43,15 @@ namespace Interprocess
 
 	void Initialize()
 	{
-//		InitTASViewPipe();
 		InitBunnySplitPipe();
 	}
 
-	/*
-	static void ShutdownTASViewPipe()
-	{
-		if (pipe_tasview != INVALID_HANDLE_VALUE) {
-			CloseHandle(pipe_tasview);
-			EngineDevMsg("Closed the TASView pipe.\n");
-		}
-		pipe_tasview = INVALID_HANDLE_VALUE;
-	}
-*/
+
 	static void ShutdownBunnySplitPipe()
 	{
 		if (pipe_bunnysplit != INVALID_HANDLE_VALUE) {
 			CloseHandle(pipe_bunnysplit);
-//			EngineDevMsg("Closed the BunnySplit pipe.\n");
+			EngineDevMsg("Closed the BunnySplit pipe.\n");
 		}
 		pipe_bunnysplit = INVALID_HANDLE_VALUE;
 
@@ -89,7 +61,6 @@ namespace Interprocess
 
 	void Shutdown()
 	{
-//		ShutdownTASViewPipe();
 		ShutdownBunnySplitPipe();
 	}
 

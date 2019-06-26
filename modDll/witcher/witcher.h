@@ -12,6 +12,17 @@ namespace w3 {
         char32_t* string;
         int32_t length;
     };
+
+    class CScriptStackFrame {
+    public:
+        unsigned char unknown_0[0x30];
+        uint8_t* unk_0x30;
+    };
+
+    class IScriptable {
+
+    };
+
 }
 
 #endif //WITCHERMOD_WITCHER_H
