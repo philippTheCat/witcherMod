@@ -23,6 +23,7 @@ set (SPT_SOURCE_FILES
         SPTLib/Windows/minhook/src/buffer.c
         SPTLib/Windows/minhook/src/trampoline.c
         SPTLib/Windows/minhook/src/HDE/hde64.c
+        SPTLib/Windows/minhook/src/HDE/hde32.c
         )
 
 
