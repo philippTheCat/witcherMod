@@ -78,7 +78,7 @@ HOOK_DEF_5(WitcherModule, int64_t , __stdcall, WITCHER_FactUpdate, int64_t, unk,
     return ORIG_WITCHER_FactUpdate(unk, factName, factValue, unk2, validity);
 }
 
-HOOK_DEF_3(WitcherModule, void , __stdcall, WITCHER_ScriptFunc_loadProgress,w3::IScriptable*, thiz, w3::CScriptStackFrame&, stackFrame, void*,  ret){
+HOOK_DEF_3(WitcherModule, void , __thiscall, WITCHER_ScriptFunc_loadProgress,w3::IScriptable*, thiz, w3::CScriptStackFrame&, stackFrame, void*,  ret){
     ORIG_WITCHER_ScriptFunc_loadProgress(thiz, stackFrame, ret);
     EngineMsg("called WITCHER_ScriptFunc_loadProgress: %f, %f\n", ret, (float *)ret );
 }

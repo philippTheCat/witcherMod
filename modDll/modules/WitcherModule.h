@@ -16,7 +16,7 @@
 
 class WitcherModule  : public IHookableNameFilterOrdered {
     HOOK_DECL(int64_t, __stdcall, WITCHER_FactUpdate,int64_t, w3::String *, int32_t, int64_t, int64_t)
-    HOOK_DECL(void, __stdcall, WITCHER_ScriptFunc_loadProgress,w3::IScriptable* , w3::CScriptStackFrame &,  void*)
+    HOOK_DECL(void, __thiscall, WITCHER_ScriptFunc_loadProgress,w3::IScriptable* , w3::CScriptStackFrame &,  void*)
     HOOK_DECL(int64_t, __fastcall, WITCHER_ScriptFunc_soundEvent,int64_t,int64_t,intptr_t  *,char * ,int64_t ,intptr_t)
 
 public:
