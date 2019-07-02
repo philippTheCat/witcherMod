@@ -7,7 +7,9 @@
 #include <Psapi.h>
 #include "./Windows/minhook/include/MinHook.h"
 
+#ifdef __MINGW32__
 #include "../mingw.mutex.h"
+#endif
 
 #pragma comment( lib, "psapi.lib" )
 #endif
@@ -20,7 +22,9 @@
 
 #include <array>
 
+#ifdef __MINGW32__
 #include "../mingw.future.h"
+#endif
 #include <limits>
 #include <map>
 #include <mutex>

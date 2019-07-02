@@ -3,7 +3,9 @@
 
 #include "../sptlib.hpp"
 #include "DetoursUtils.hpp"
+#ifdef __MINGW32__
 #include "../../mingw.mutex.h"
+#endif
 
 namespace DetoursUtils
 {

@@ -1,7 +1,10 @@
 #pragma once
 
-
+#ifdef __MINGW32__
 #include "../mingw.future.h"
+#else
+#include <future>
+#endif
 #include "patterns.hpp"
 
 namespace MemUtils

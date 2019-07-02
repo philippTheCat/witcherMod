@@ -8,7 +8,9 @@
 #include <process.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#ifdef __MINGW32__
 #include "mingw.future.h"
+#endif
 #include "witcher/witcher.h"
 
 
