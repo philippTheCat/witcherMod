@@ -2,7 +2,12 @@ cmake_minimum_required(VERSION 3.9)
 project(modDll)
 
 set(CMAKE_CXX_STANDARD 17)
-add_definitions(-fpermissive) # CMake 2.8.11 or older
+
+if (MSVC)
+	add_definitions(/permissive)
+else ()
+	add_definitions(-fpermissive) # CMake 2.8.11 or older
+endif ()
 
 set (SPT_SOURCE_FILES
         SPTLib/IHookableModule.cpp
@@ -51,4 +56,6 @@ add_library(modDll SHARED
         ${SOURCE_FILES}
         )
 
-target_link_libraries(modDll -lpsapi)
+if (MINGW)
+	target_link_libraries(modDll -lpsapi)
+endif ()
