@@ -35,14 +35,14 @@ namespace ConUtils
 	void Log(const char *szText)
 	{
 		if (hConsoleOutput != INVALID_HANDLE_VALUE)
-			WriteConsoleA(hConsoleOutput, szText, strlen(szText), NULL, NULL);
+			WriteConsoleA(hConsoleOutput, szText, static_cast<DWORD>(strlen(szText)), NULL, NULL);
 	}
 
 	void Log(const char *szText, WORD wAttributes)
 	{
 		if (hConsoleOutput != INVALID_HANDLE_VALUE) {
 			SetConsoleTextAttribute(hConsoleOutput, wAttributes);
-			WriteConsoleA(hConsoleOutput, szText, strlen(szText), NULL, NULL);
+			WriteConsoleA(hConsoleOutput, szText, static_cast<DWORD>(strlen(szText)), NULL, NULL);
 			SetConsoleTextAttribute(hConsoleOutput, wStandartAttributes);
 		}
 	}
@@ -50,14 +50,14 @@ namespace ConUtils
 	void Log(const WCHAR *szText)
 	{
 		if (hConsoleOutput != INVALID_HANDLE_VALUE)
-			WriteConsoleW(hConsoleOutput, szText, wcslen(szText), NULL, NULL);
+			WriteConsoleW(hConsoleOutput, szText, static_cast<DWORD>(wcslen(szText)), NULL, NULL);
 	}
 
 	void Log(const WCHAR *szText, WORD wAttributes)
 	{
 		if (hConsoleOutput != INVALID_HANDLE_VALUE) {
 			SetConsoleTextAttribute(hConsoleOutput, wAttributes);
-			WriteConsoleW(hConsoleOutput, szText, wcslen(szText), NULL, NULL);
+			WriteConsoleW(hConsoleOutput, szText, static_cast<DWORD>(wcslen(szText)), NULL, NULL);
 			SetConsoleTextAttribute(hConsoleOutput, wStandartAttributes);
 		}
 	}
