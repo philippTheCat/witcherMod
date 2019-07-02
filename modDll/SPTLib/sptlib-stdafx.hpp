@@ -3,12 +3,10 @@
 #ifdef _WIN32
 #define _CRT_SECURE_NO_WARNINGS
 #define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
 #include <Windows.h>
 #include <Psapi.h>
-#include "./Windows/minhook/include/MinHook.h"
-
-#include "../mingw.mutex.h"
-
+#include <MinHook.h>
 #pragma comment( lib, "psapi.lib" )
 #endif
 
@@ -19,8 +17,7 @@
 #include <cstring>
 
 #include <array>
-
-#include "../mingw.future.h"
+#include <future>
 #include <limits>
 #include <map>
 #include <mutex>

@@ -96,22 +96,16 @@ namespace Hooks
 
 	void InitInterception(bool needToIntercept)
 	{
-	    EngineDevMsg("InitInterception");
 		ORIG_LoadLibraryA = LoadLibraryA;
 		ORIG_LoadLibraryW = LoadLibraryW;
 		ORIG_LoadLibraryExA = LoadLibraryExA;
 		ORIG_LoadLibraryExW = LoadLibraryExW;
 		ORIG_FreeLibrary = FreeLibrary;
 
-
-        EngineDevMsg("InitInterception2");
 		if (needToIntercept)
 		{
-
-            EngineDevMsg("MH_Initialize_before");
 			auto status = MH_Initialize();
-            EngineDevMsg("MH_Initialize_after");
-            if (status != MH_OK)
+			if (status != MH_OK)
 			{
 				EngineWarning("Failed to initialize MinHook: %s.\n", MH_StatusToString(status));
 				return;

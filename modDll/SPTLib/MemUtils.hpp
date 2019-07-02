@@ -1,8 +1,9 @@
 #pragma once
 
-
-#include "../mingw.future.h"
 #include "patterns.hpp"
+#include <functional>
+#include <array>
+#include <cstddef>
 
 namespace MemUtils
 {

@@ -7,6 +7,7 @@
 #include "../SPTLib/sptlib.hpp"
 #include "../SPTLib/Hooks.hpp"
 #include "../modules/WitcherModule.h"
+#include <chrono>
 
 const wchar_t EVENT_NAME[] = L"witcherMod-Injector";
 
@@ -17,7 +18,7 @@ static void Log(const char* prefix, const char* msg)
 	if (logfile)
 	{
 		auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-		auto ltime = std::localtime(&time);
+		auto ltime = localtime(&time);
 		fprintf(logfile, "[%02d:%02d:%02d] [%s] %s", ltime->tm_hour, ltime->tm_min, ltime->tm_sec, prefix, msg);
 		fflush(logfile);
 	}

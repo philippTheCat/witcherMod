@@ -1,8 +1,8 @@
-#include <assert.h>
 #include "sptlib-stdafx.hpp"
 
 #include "MemUtils.hpp"
 #include "sptlib.hpp"
+#include <assert.h>
 
 namespace MemUtils
 {

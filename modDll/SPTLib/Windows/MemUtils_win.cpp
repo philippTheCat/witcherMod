@@ -1,8 +1,11 @@
 #include "../sptlib-stdafx.hpp"
-#include <algorithm>
+
 #include "../MemUtils.hpp"
 #include "DetoursUtils.hpp"
-#include "../../stdafx.h"
+#include <stdlib.h>
+#include <wincon.h>
+#include <stdlib.h>
+#include <minwindef.h>
 
 namespace MemUtils
 {

@@ -1,9 +1,5 @@
 #pragma once
 
-
-#include <stdexcept>
-#include <array>
-
 namespace patterns
 {
 	namespace detail

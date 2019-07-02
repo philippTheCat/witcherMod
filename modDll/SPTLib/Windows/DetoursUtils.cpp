@@ -1,9 +1,8 @@
-#include <assert.h>
 #include "../sptlib-stdafx.hpp"
 
 #include "../sptlib.hpp"
 #include "DetoursUtils.hpp"
-#include "../../mingw.mutex.h"
+#include <cassert>
 
 namespace DetoursUtils
 {
@@ -49,7 +48,7 @@ namespace DetoursUtils
 				}
 
 				{
-					lock_guard<std::mutex> lock(tramp_to_original_mutex);
+					lock_guard<mutex> lock(tramp_to_original_mutex);
 					tramp_to_original[*target] = original;
 				}
 				hook_count++;

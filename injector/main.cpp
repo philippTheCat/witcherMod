@@ -181,7 +181,7 @@ auto GetDLLFileName(std::wstring dll_name)
         auto slash = LastSlashPos(fileName);
         if (slash != std::wstring::npos)
             fileName = fileName.substr(0, slash);
-        fileName += L'\\' + (dll_name.empty() ? L"BunnymodXT.dll"s : dll_name);
+        fileName += L'\\' + (dll_name.empty() ? L"modDll.dll"s : dll_name);
         return fileName;
     } else
         std::wcerr << L"Error getting the injector file name: " << GetErrorMessage();
@@ -220,7 +220,7 @@ auto DoInjection(HANDLE targetProcess, std::wstring dll_name)
     }
 
     if (exit_code == 0) {
-        std::wcerr << L"LoadLibrary failed. This usually means that you don't have BunnymodXT.dll in the same folder as the injector.\n";
+        std::wcerr << L"LoadLibrary failed. This usually means that you don't have modDll.dll in the same folder as the injector.\n";
         return false;
     }
 

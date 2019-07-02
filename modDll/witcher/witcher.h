@@ -6,6 +6,7 @@
 #define WITCHERMOD_WITCHER_H
 
 #include <stdint.h>
+#include "./witchertypes.h"
 
 namespace w3 {
     struct String {
@@ -19,9 +20,6 @@ namespace w3 {
         uint8_t* unk_0x30;
     };
 
-    class IScriptable {
-
-    };
 
 }
 

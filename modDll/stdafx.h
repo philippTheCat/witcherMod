@@ -8,8 +8,7 @@
 #include <process.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include "mingw.future.h"
-#include "witcher/witcher.h"
+#include <future>
 
 
 /*
