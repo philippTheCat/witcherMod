@@ -1,5 +1,8 @@
+#define _CRT_SECURE_NO_WARNINGS
 
 #include "../stdafx.h"
+
+#include <ctime>
 
 #include "conutils.hpp"
 #include "../interprocess.hpp"
